@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .tit{
+                padding: 10px;
+                background: #ccccff;
+                text-decoration: none;
+
+            }
+            .tit:hover{
+                background: #9999ff;
+            }
+            #contenido{
+                border: 1px solid #cccccc;
+                margin-top:9px;
+                padding: 10px;
+            }
+        </style>
+        <script type="text/javascript">
+            function cambiarPestania(enlaceSeleccionado) {
+                // 1 obtener los elementos a manipular
+                var divContenido = document.getElementById("contenido");
+                // var divContenido = document.querySelector("#contenido");
+
+                // 0 eliminar lo anterior
+                //eliminar elparrafo nuevo que esta dentro del div contenido
+                if (divContenido.hasChildNodes()) {
+                    divContenido.removeChild(divContenido.firstChild);
+                }
+                // limpiar estilos de los enlaces
+                var enlaces = document.querySelectorAll("a[class='tit']");
+               //  var enlaces = document.getElementsByClassName("tit");
+               for(let i=0; i<enlaces.length;i++){
+                     enlaces[i].style.border = '';
+                     enlaces[i].style.backgroundColor = "#ccccff";
+               }
+                
+                var id = enlaceSeleccionado.getAttribute("id");
+                var contenido;
+                switch (id) {
+                    case "uno":
+                        contenido = "Contenido primera pestania";
+                        break;
+                    case "dos":
+                        contenido = "Contenido segunda pestania";
+                        break;
+                    default:
+                        contenido = "Contenido tercera pestania";
+                        break;
+                }
+                var parrafo = document.createElement("p");  //<p></p>
+                parrafo.innerHTML = contenido;//<p>Contenido tercera pestania</p>
+                parrafo.style.backgroundColor ="pink";
+                divContenido.appendChild(parrafo);//<div id="contenido"><p>Contenido tercera pestania</p></div>
+
+            //    divContenido.innerHTML = "<div><p >" + contenido + "</p></div>";
+            // no permitido
+            
+                enlaceSeleccionado.style.border = "1px solid green";
+                enlaceSeleccionado.style.backgroundColor = "#9999ff";
+            }
+        </script>
+    </head>
+    <body>
+        <div id="titulos">
+            <a class="tit" id="uno" onmouseover="cambiarPestania(this)" href="#">Pestaña 1</a>
+            <a class="tit" id="dos" onmouseover="cambiarPestania(this)" href="#">Pestaña 2</a>
+            <a class="tit" id="tres" onmouseover="cambiarPestania(this)" href="#">Pestaña 3</a>
+        </div>
+        <div id="contenido">
+
+        </div>
+
+
+
+    </body>
+</html>
